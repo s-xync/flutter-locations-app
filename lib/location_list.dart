@@ -1,3 +1,4 @@
+import 'package:first_app/location_detail.dart';
 import "package:flutter/material.dart";
 import "./models/location.dart";
 import "./styles.dart";
@@ -17,12 +18,26 @@ class LocationList extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: this.locations.length,
-        itemBuilder: (context, index) => ListTile(
-          contentPadding: EdgeInsets.all(10.0),
-          leading: _itemThumbnail(this.locations[index]),
-          title: _itemTitle(this.locations[index]),
-        ),
+        itemBuilder: _listViewItemBuilder,
       ));
+
+  Widget _listViewItemBuilder(BuildContext context, int index) {
+    var location = this.locations[index];
+    return ListTile(
+      contentPadding: EdgeInsets.all(10.0),
+      leading: _itemThumbnail(location),
+      title: _itemTitle(location),
+      onTap: () {
+        _navigateToLocationDetail(context, location);
+      },
+    );
+  }
+
+  void _navigateToLocationDetail(BuildContext context, Location location) {
+    print("↗ ${location.name}");
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => LocationDetail(location)));
+  }
 
   Widget _itemThumbnail(Location location) => Container(
       constraints: BoxConstraints.tightFor(width: 100.0),
