@@ -4,7 +4,7 @@ import "../models/location_fact.dart";
 class MockLocation extends Location {
   static Location FetchAny() => Location(
           name: "Arashiyama Bamboo Grove, Kyoto, Japan",
-          url: "https://fluttercrashcourse.com/assets/images/arashiyama@3x.jpg",
+          url: "https://placekitten.com/1080/720",
           facts: <LocationFact>[
             LocationFact(
                 title: "Summary",
